@@ -13,6 +13,7 @@ const navLeft = [
 const navRight = [
   { label: "Portfolio",  href: "/portfolio" },
   { label: "Blogs",      href: "/blogs" },
+  { label: "Contact Us",      href: "/contact" },
 ];
 
 const services = [
@@ -24,27 +25,23 @@ const services = [
   { label: "Cloud Engineering", href: "/services/cloud-engineering", icon: "☁️", color: "text-rose-500"    },
 ];
 
-// Define a set of colors to cycle through for the industry links to maintain visual consistency
+// Define a set of colors to cycle through for industry links to maintain visual consistency
 const industryColors = [
   "text-rose-500", "text-emerald-500", "text-violet-500", "text-sky-500", "text-amber-500", "text-blue-500",
   "text-green-500", "text-purple-500", "text-red-500", "text-indigo-500", "text-yellow-500", "text-pink-500",
 ];
 
-// Helper to generate href and assign color, and ensure unique color assignment
-let colorIndex = 0;
-const createIndustryItem = (label: string, icon: string) => {
-  const assignedColor = industryColors[colorIndex % industryColors.length];
-  colorIndex++;
+// Helper to create a base industry item without color
+const createBaseIndustryItem = (label: string, icon: string) => {
   return {
     label,
     icon,
     href: `/industries/${label.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`,
-    color: assignedColor,
   };
 };
 
-// Grouped industries for the nested dropdown
-const categorizedIndustries = [
+// Raw industry data structure
+const rawCategorizedIndustries = [
   {
     category: "Health & Wellness",
     icon: "❤️",
@@ -52,14 +49,14 @@ const categorizedIndustries = [
       {
         name: "Healthcare Solutions",
         items: [
-          createIndustryItem("Healthcare", "❤️"),
-          createIndustryItem("Fitness", "💪"),
+          createBaseIndustryItem("Healthcare", "❤️"),
+          createBaseIndustryItem("Fitness", "💪"),
         ]
       },
       {
         name: "Wearable Technology",
         items: [
-          createIndustryItem("Wearables", "⌚"),
+          createBaseIndustryItem("Wearables", "⌚"),
         ]
       }
     ]
@@ -71,16 +68,16 @@ const categorizedIndustries = [
       {
         name: "Banking & Payments",
         items: [
-          createIndustryItem("Finance", "💰"), // Ensure this links to /industries/finance
-          createIndustryItem("Banking", "🏦"), // This will now link to /industries/banking
-          createIndustryItem("Payments", "💸"), // This will now link to /industries/payments
+          createBaseIndustryItem("Finance", "💰"),
+          createBaseIndustryItem("Banking", "🏦"),
+          createBaseIndustryItem("Payments", "💸"),
         ]
       },
       {
         name: "Insurance & Lending",
         items: [
-          createIndustryItem("Insurance", "🛡️"), // This will now link to /industries/insurance
-          createIndustryItem("Lending", "💳"), // This will now link to /industries/lending
+          createBaseIndustryItem("Insurance", "🛡️"),
+          createBaseIndustryItem("Lending", "💳"),
         ]
       }
     ]
@@ -92,21 +89,21 @@ const categorizedIndustries = [
       {
         name: "Online Commerce",
         items: [
-          createIndustryItem("ECommerce", "🛒"), // This will now link to /industries/ecommerce
-          createIndustryItem("Retail", "🛍️"), // This will now link to /industries/retail
+          createBaseIndustryItem("ECommerce", "🛒"),
+          createBaseIndustryItem("Retail", "🛍️"),
         ]
       },
       {
         name: "Food & Hospitality",
         items: [
-          createIndustryItem("Restaurant", "🍽️"), // This will now link to /industries/restaurant
-          createIndustryItem("Travel", "✈️"),     // This will now link to /industries/travel
+          createBaseIndustryItem("Restaurant", "🍽️"),
+          createBaseIndustryItem("Travel", "✈️"),
         ]
       },
       {
         name: "Real Estate",
         items: [
-          createIndustryItem("Real Estate", "🏠"), // This will now link to /industries/real-estate
+          createBaseIndustryItem("Real Estate", "🏠"),
         ]
       }
     ]
@@ -118,15 +115,15 @@ const categorizedIndustries = [
       {
         name: "Transportation & Delivery",
         items: [
-          createIndustryItem("Logistics", "🚢"),
-          createIndustryItem("Aviation", "🛫"),
-          createIndustryItem("EMobility", "🚗"),
+          createBaseIndustryItem("Logistics", "🚢"),
+          createBaseIndustryItem("Aviation", "🛫"),
+          createBaseIndustryItem("EMobility", "🚗"),
         ]
       },
       {
         name: "Supply Chain Management",
         items: [
-          createIndustryItem("Supply Chain", "🔗"),
+          createBaseIndustryItem("Supply Chain", "🔗"),
         ]
       }
     ]
@@ -138,14 +135,14 @@ const categorizedIndustries = [
       {
         name: "Industrial Solutions",
         items: [
-          createIndustryItem("Construction", "🏗️"),
-          createIndustryItem("Manufacturing", "🏭"),
+          createBaseIndustryItem("Construction", "🏗️"),
+          createBaseIndustryItem("Manufacturing", "🏭"),
         ]
       },
       {
         name: "Energy & Utilities",
         items: [
-          createIndustryItem("Energy", "💡"),
+          createBaseIndustryItem("Energy", "💡"),
         ]
       }
     ]
@@ -157,20 +154,20 @@ const categorizedIndustries = [
       {
         name: "Content & Publishing",
         items: [
-          createIndustryItem("Magazine & Newspaper", "📰"),
-          createIndustryItem("Social Media", "💬"),
+          createBaseIndustryItem("Magazine & Newspaper", "📰"),
+          createBaseIndustryItem("Social Media", "💬"),
         ]
       },
       {
         name: "Marketing & Advertising",
         items: [
-          createIndustryItem("Marketing", "📣"),
+          createBaseIndustryItem("Marketing", "📣"),
         ]
       },
       {
         name: "Telecommunications",
         items: [
-          createIndustryItem("Telecom", "📞"),
+          createBaseIndustryItem("Telecom", "📞"),
         ]
       }
     ]
@@ -182,21 +179,21 @@ const categorizedIndustries = [
       {
         name: "Learning Platforms",
         items: [
-          createIndustryItem("Education", "🎓"),
+          createBaseIndustryItem("Education", "🎓"),
         ]
       },
       {
         name: "Digital Entertainment",
         items: [
-          createIndustryItem("Entertainment", "🎬"),
-          createIndustryItem("Gaming", "🎮"),
-          createIndustryItem("OTT", "📺"),
+          createBaseIndustryItem("Entertainment", "🎬"),
+          createBaseIndustryItem("Gaming", "🎮"),
+          createBaseIndustryItem("OTT", "📺"),
         ]
       },
       {
         name: "Event Management",
         items: [
-          createIndustryItem("Events", "🗓️"),
+          createBaseIndustryItem("Events", "🗓️"),
         ]
       }
     ]
@@ -208,13 +205,13 @@ const categorizedIndustries = [
       {
         name: "Government & Policy",
         items: [
-          createIndustryItem("Politics", "🗳️"),
+          createBaseIndustryItem("Politics", "🗳️"),
         ]
       },
       {
         name: "Corporate Social Responsibility",
         items: [
-          createIndustryItem("CSR", "💎"),
+          createBaseIndustryItem("CSR", "💎"),
         ]
       }
     ]
@@ -226,43 +223,124 @@ const categorizedIndustries = [
       {
         name: "On-Demand Services",
         items: [
-          createIndustryItem("On-Demand", "🚀"), // This will now link to /industries/on-demand
+          createBaseIndustryItem("On-Demand", "🚀"),
         ]
       },
       {
         name: "Agriculture Tech",
         items: [
-          createIndustryItem("Agriculture", "🌱"), // This will now link to /industries/agriculture
+          createBaseIndustryItem("Agriculture", "🌱"),
         ]
       }
     ]
   },
 ];
 
+// Assign colors to all industry items in a deterministic way
+let currentIndustryColorIndex = 0;
+const assignColorsToIndustryItems = (items: any[]) => {
+  return items.map((item: any) => {
+    const assignedColor = industryColors[currentIndustryColorIndex % industryColors.length];
+    currentIndustryColorIndex++;
+    return { ...item, color: assignedColor };
+  });
+};
+
+const categorizedIndustries = rawCategorizedIndustries.map(cat => ({
+  ...cat,
+  subCategories: cat.subCategories.map(subCat => ({
+    ...subCat,
+    items: assignColorsToIndustryItems(subCat.items),
+  })),
+}));
+
+// New structure for the "About" dropdown
+const categorizedAbout = [
+  {
+    category: "Company",
+    icon: "🏢",
+    subCategories: [
+      {
+        name: "Overview",
+        items: [
+          { label: "Who We Are", href: "/about/who-we-are", icon: "👤", color: "text-sky-500" },
+          { label: "What We Do", href: "/about/what-we-do", icon: "💡", color: "text-blue-500" },
+          { label: "Mission & Vision", href: "/about/mission-vision", icon: "🎯", color: "text-indigo-500" },
+          { label: "Brand Story", href: "/about/brand-story", icon: "📖", color: "text-purple-500" },
+        ]
+      },
+      {
+        name: "Our Team",
+        items: [
+          { label: "Meet the Team", href: "/about/team", icon: "👥", color: "text-violet-500" },
+          { label: "Roles & Expertise", href: "/about/roles", icon: "🛠️", color: "text-fuchsia-500" },
+        ]
+      }
+    ]
+  },
+  {
+    category: "Culture & Values",
+    icon: "💖",
+    subCategories: [
+      {
+        name: "Our Foundation",
+        items: [
+          { label: "Core Values", href: "/about/values", icon: "💎", color: "text-rose-500" },
+          { label: "Work Culture", href: "/about/culture", icon: "🤝", color: "text-pink-500" },
+        ]
+      }
+    ]
+  },
+  {
+    category: "How We Work",
+    icon: "⚙️",
+    subCategories: [
+      {
+        name: "Our Approach",
+        items: [
+          { label: "Our Process", href: "/about/our-process", icon: "📈", color: "text-emerald-500" },
+          { label: "Tech Stack", href: "/about/tech-stack", icon: "💻", color: "text-amber-500" },
+        ]
+      }
+    ]
+  },
+  {
+    category: "Insights & Impact",
+    icon: "🏆",
+    subCategories: [
+      { name: "Showcase", items: [{ label: "Case Studies", href: "/portfolio", icon: "📊", color: "text-blue-500" }] },
+      { name: "Client Reviews", items: [{ label: "Testimonials", href: "/#testimonials", icon: "💬", color: "text-green-500" }] },
+    ]
+  },
+  {
+    category: "Join Us",
+    icon: "🚀",
+    subCategories: [
+      { name: "Opportunities", items: [{ label: "Careers", href: "/careers", icon: "🚀", color: "text-indigo-500" }] },
+      { name: "Questions", items: [{ label: "FAQ", href: "/faq", icon: "❓", color: "text-yellow-500" }] },
+    ]
+  },
+];
+
 // Flatten all industries for mobile menu and general lookup
-// Reset colorIndex before flattening to ensure consistent colors if createIndustryItem was called elsewhere
-colorIndex = 0; // Reset for consistent color assignment in allFlatIndustries
 const allFlatIndustries = categorizedIndustries.flatMap(cat =>
   cat.subCategories.flatMap(subCat => subCat.items)
 );
 
 export default function Header() {
-  const [scrolled,  setScrolled]  = useState(false);
-  const [mounted,   setMounted]   = useState(false);
-  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false); // New state for contact form modal
-  // State to manage which main industry category is currently active/hovered in the dropdown
+  // States to manage which main category is currently active/hovered in the dropdowns
   const [activeIndustryCategory, setActiveIndustryCategory] = useState(categorizedIndustries[0].category);
+  const [activeAboutCategory, setActiveAboutCategory] = useState(categorizedAbout[0].category);
 
   useEffect(() => {
-    setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const active = mounted && scrolled;
-
+  const active = scrolled;
   const linkCls = `nav-link-hover transition-colors duration-200 ${active ? "hover:text-brand" : "hover:text-white"}`;
 
   return (
@@ -311,7 +389,9 @@ export default function Header() {
               alt="Geesha Solutions"
               width={active ? 88 : 100}
               height={36}
+              priority // Add priority for LCP image
               className="object-contain transition-all duration-500"
+              style={{ height: "auto" }}
             />
           </Link>
 
@@ -320,11 +400,73 @@ export default function Header() {
 
             {/* Left links: Home, About */}
             {navLeft.map(({ label, href }) => (
-              <Link key={label} href={href} className={linkCls}>{label}</Link>
+              label === 'About' ? (
+                <div key={label} className="relative group">
+                  <Link href={href} className={`${linkCls} cursor-pointer flex items-center gap-1`}>
+                    {label}
+                    <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </Link>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[600px] rounded-2xl overflow-hidden z-50 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 shadow-2xl shadow-black/15 border border-gray-100 bg-white flex">
+                    {/* Left panel: Main About Categories */}
+                    <div className="w-2/5 p-2 border-r border-gray-100 bg-gray-50/80">
+                      <div className="px-3 py-2 text-[10px] font-black uppercase tracking-widest text-gray-400">About Geesha</div>
+                      <div className="grid grid-cols-1 gap-1">
+                        {categorizedAbout.map((cat) => (
+                          <div
+                            key={cat.category}
+                            // Using onMouseEnter to change the active category
+                            onMouseEnter={() => setActiveAboutCategory(cat.category)}
+                            className={`group/category flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer transition-colors duration-200 ${
+                              activeAboutCategory === cat.category ? "bg-white shadow-sm text-brand" : "hover:bg-gray-100 text-gray-700"
+                            }`}
+                          >
+                            <span className="text-base w-6 text-center">{cat.icon}</span>
+                            <span className="text-sm font-semibold">{cat.category}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Right panel: Sub-categories and their items for About */}
+                    <div className="w-3/5 p-6 flex flex-col">
+                      <div className="grow">
+                        <p className="text-[10px] font-black uppercase tracking-widest text-violet-500/80 mb-4">
+                          {activeAboutCategory} Details
+                        </p>
+                        <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+                          {categorizedAbout.find(cat => cat.category === activeAboutCategory)?.subCategories?.map((subCat) => (
+                            <div key={subCat.name} className="space-y-1">
+                              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 border-b border-gray-100 pb-1">{subCat.name}</h4>
+                              {subCat.items.map((item) => (
+                                <Link key={item.label} href={item.href} className={`group/item flex items-center gap-2 text-sm font-medium text-gray-600 hover:${item.color} py-1 rounded-md transition-colors duration-200`}>
+                                  <span className={`text-base w-5 text-center ${item.color}`}>{item.icon}</span>
+                                  {item.label}
+                                </Link>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="mt-6 pt-4 border-t border-gray-100">
+                        <Link href="/about" className="text-xs font-bold text-violet-600 hover:text-violet-800 transition-colors duration-200 flex items-center gap-1">
+                          View all about us →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link key={label} href={href} className={linkCls}>{label}</Link>
+              )
             ))}
 
             {/* Services dropdown — right after About */}
             <div className="relative group">
+              {/* State to manage which main about category is currently active/hovered in the dropdown */}
+              {/* Initialize with the first category to ensure content is displayed on initial hover */}
+              <span className="hidden" /> {/* Placeholder to prevent error if activeAboutCategory is not defined */}
               <span className={`${linkCls} cursor-pointer flex items-center gap-1`}>
                 Services
                 <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -357,7 +499,7 @@ export default function Header() {
             {/* Industries dropdown */}
             <div
               className="relative group"
-              // Reset active category when mouse leaves the entire dropdown area, defaulting to the first category
+              // Reset active category when leaving the industries dropdown
               onMouseLeave={() => setActiveIndustryCategory(categorizedIndustries[0].category)}
             >
               <Link href="/industries" className={`${linkCls} cursor-pointer flex items-center gap-1`}>
@@ -466,11 +608,28 @@ export default function Header() {
         <div className={`md:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="bg-white/98 backdrop-blur-2xl border-t border-gray-100 px-6 py-5 flex flex-col gap-1">
 
-            {navLeft.map(({ label, href }) => (
-              <Link key={label} href={href} onClick={() => setMenuOpen(false)} className="py-2.5 text-sm font-semibold text-gray-700 hover:text-brand border-b border-gray-50 transition-colors duration-200">
-                {label}
-              </Link>
-            ))}
+            <Link href="/" onClick={() => setMenuOpen(false)} className="py-2.5 text-sm font-semibold text-gray-700 hover:text-brand border-b border-gray-50 transition-colors duration-200">
+              Home
+            </Link>
+
+            {/* Mobile About grid */}
+            <div className="py-3 border-b border-gray-50">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">About Geesha</p>
+              <div className="space-y-3">
+                {categorizedAbout.map((mainCat) => (
+                  <div key={mainCat.category}>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">{mainCat.category}</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {mainCat.subCategories.flatMap(subCat => subCat.items).map(({ label, href, icon }) => (
+                        <Link key={label} href={href} onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-50 hover:bg-brand/5 text-xs font-semibold text-gray-600 hover:text-brand transition-all duration-200">
+                          <span>{icon}</span>{label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Mobile services grid */}
             <div className="py-3 border-b border-gray-50">

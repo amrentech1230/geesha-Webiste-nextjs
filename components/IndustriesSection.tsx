@@ -2,7 +2,7 @@
 
 import { useReveal } from "@/hooks/useReveal";
 import { Banknote, HeartPulse, ShoppingCart, GraduationCap, Factory, Ship, Building, Car, Leaf, Plane, Utensils, Globe, Home, Newspaper, Users, Megaphone, Rocket, Gem, Lightbulb, Wallet, Landmark, Shield, CreditCard, Watch, Dumbbell, Package, Calendar, PlayCircle, ShoppingBag, Tv, Gamepad, Phone } from "lucide-react";
-
+import Link from "next/link";
 // Define a set of gradient and shadow classes to cycle through
 const gradientStyles = [
   { grad: "from-emerald-400 to-teal-600", shadow: "hover:shadow-emerald-200/60" },
@@ -18,43 +18,42 @@ const getGradientStyle = (index: number) => gradientStyles[index % gradientStyle
 
 const allIndustries = [
   // Column 1
-  { title: "Healthcare", icon: HeartPulse, desc: "Innovative solutions for patient care, medical research, and health management." }, // Ensure this is unique if Finance is also added
-  { title: "Wearables", icon: Watch, desc: "Developing smart wearable technology for fitness, health, and lifestyle." },
-  { title: "Fitness", icon: Dumbbell, desc: "Building platforms and apps to enhance personal fitness and wellness journeys." },
-  { title: "On-Demand", icon: Rocket, desc: "Creating seamless on-demand services for various consumer needs." },
-  { title: "ECommerce", icon: ShoppingCart, desc: "Robust online stores and marketplaces for a superior shopping experience." },
-  { title: "Construction", icon: Building, desc: "Digital tools for project management, site monitoring, and operational efficiency." },
-  { title: "Politics", icon: Megaphone, desc: "Platforms for political campaigns, public engagement, and data analysis." },
-  { title: "EMobility", icon: Car, desc: "Software for electric vehicles, charging infrastructure, and smart transportation." },
-  { title: "Logistics", icon: Ship, desc: "Optimizing supply chains with real-time tracking and fleet management systems." },
-  { title: "Agriculture", icon: Leaf, desc: "Agri-tech solutions for smart farming, crop management, and sustainable practices." },
-  { title: "Supply Chain", icon: Package, desc: "End-to-end supply chain visibility and optimization for complex networks." },
+  { title: "Healthcare", icon: HeartPulse, desc: "Innovative solutions for patient care, medical research, and health management.", href: "/industries/healthcare", grad: "from-red-500 to-rose-600", shadow: "hover:shadow-red-200/60" },
+  { title: "Wearables", icon: Watch, desc: "Developing smart wearable technology for fitness, health, and lifestyle.", href: "/industries/wearables", grad: "from-emerald-400 to-teal-600", shadow: "hover:shadow-emerald-200/60" },
+  { title: "Fitness", icon: Dumbbell, desc: "Building platforms and apps to enhance personal fitness and wellness journeys.", href: "/industries/fitness", grad: "from-violet-500 to-purple-600", shadow: "hover:shadow-violet-200/60" },
+  { title: "On-Demand", icon: Rocket, desc: "Creating seamless on-demand services for various consumer needs.", href: "/industries/on-demand" },
+  { title: "ECommerce", icon: ShoppingCart, desc: "Robust online stores and marketplaces for a superior shopping experience.", href: "/industries/ecommerce" },
+  { title: "Construction", icon: Building, desc: "Digital tools for project management, site monitoring, and operational efficiency.", href: "/industries/construction" },
+  { title: "Politics", icon: Megaphone, desc: "Platforms for political campaigns, public engagement, and data analysis.", href: "/industries/politics" },
+  { title: "EMobility", icon: Car, desc: "Software for electric vehicles, charging infrastructure, and smart transportation.", href: "/industries/emobility" },
+  { title: "Logistics", icon: Ship, desc: "Optimizing supply chains with real-time tracking and fleet management systems.", href: "/industries/logistics" },
+  { title: "Supply Chain", icon: Package, desc: "End-to-end supply chain visibility and optimization for complex networks.", href: "/industries/supply-chain" },
 
   // Column 2
-  { title: "Finance", icon: Banknote, desc: "Secure and scalable financial software, from trading to personal finance." }, // This entry already exists and will now correctly link to the new page
-  { title: "Banking", icon: Landmark, desc: "Digital banking solutions, core banking systems, and customer experience platforms.", href: "/industries/banking" }, // Added href for Banking
-  { title: "Insurance", icon: Shield, desc: "Modernizing insurance processes with AI-driven claims and policy management." },
-  { title: "Lending", icon: Wallet, desc: "Streamlined lending platforms for consumer and business finance." },
-  { title: "Payments", icon: CreditCard, desc: "Secure and efficient payment gateways and processing solutions." },
-  { title: "Entertainment", icon: Tv, desc: "Engaging digital experiences for media, streaming, and content delivery." },
-  { title: "Education", icon: GraduationCap, desc: "E-learning platforms, virtual classrooms, and educational management systems." },
-  { title: "Events", icon: Calendar, desc: "Event management software for seamless planning, ticketing, and engagement." },
-  { title: "Manufacturing", icon: Factory, desc: "Smart factory solutions, IoT integration, and production optimization." },
-  { title: "Energy", icon: Lightbulb, desc: "Software for energy management, smart grids, and renewable energy solutions." },
-  { title: "OTT", icon: PlayCircle, desc: "Over-the-top media platforms for video streaming and content distribution." },
+  { title: "Finance", icon: Banknote, desc: "Secure and scalable financial software, from trading to personal finance.", href: "/industries/finance", grad: "from-emerald-400 to-teal-600", shadow: "hover:shadow-emerald-200/60" },
+  { title: "Banking", icon: Landmark, desc: "Digital banking solutions, core banking systems, and customer experience platforms.", href: "/industries/banking" },
+  { title: "Insurance", icon: Shield, desc: "Modernizing insurance processes with AI-driven claims and policy management.", href: "/industries/insurance" },
+  { title: "Lending", icon: Wallet, desc: "Streamlined lending platforms for consumer and business finance.", href: "/industries/lending" },
+  { title: "Payments", icon: CreditCard, desc: "Secure and efficient payment gateways and processing solutions.", href: "/industries/payments" },
+  { title: "Entertainment", icon: Tv, desc: "Engaging digital experiences for media, streaming, and content delivery.", href: "/industries/entertainment" },
+  { title: "Education", icon: GraduationCap, desc: "E-learning platforms, virtual classrooms, and educational management systems.", href: "/industries/education" },
+  { title: "Events", icon: Calendar, desc: "Event management software for seamless planning, ticketing, and engagement.", href: "/industries/events" },
+  { title: "Manufacturing", icon: Factory, desc: "Smart factory solutions, IoT integration, and production optimization.", href: "/industries/manufacturing" },
+  { title: "Energy", icon: Lightbulb, desc: "Software for energy management, smart grids, and renewable energy solutions.", href: "/industries/energy" },
+  { title: "OTT", icon: PlayCircle, desc: "Over-the-top media platforms for video streaming and content distribution.", href: "/industries/ott" },
 
   // Column 3
-  { title: "Restaurant", icon: Utensils, desc: "Digital solutions for restaurant operations, online ordering, and customer loyalty." },
-  { title: "Travel", icon: Globe, desc: "Booking platforms, travel management systems, and personalized travel experiences." },
-  { title: "Real Estate", icon: Home, desc: "Property management software, virtual tours, and real estate marketplaces." },
-  { title: "Magazine & Newspaper", icon: Newspaper, desc: "Digital publishing platforms and content management systems." },
-  { title: "Social Media", icon: Users, desc: "Building and enhancing social networking platforms and community tools." },
-  { title: "Marketing", icon: Megaphone, desc: "Marketing automation, CRM, and analytics tools for effective campaigns." },
-  { title: "Aviation", icon: Plane, desc: "Software for airline operations, fleet management, and passenger experience." },
-  { title: "CSR", icon: Gem, desc: "Corporate Social Responsibility platforms for impact tracking and reporting." },
-  { title: "Retail", icon: ShoppingBag, desc: "Retail management systems, inventory tracking, and customer engagement." },
-  { title: "Gaming", icon: Gamepad, desc: "Developing engaging games and gaming platforms for various devices." },
-  { title: "Telecom", icon: Phone, desc: "Solutions for telecommunication services, network management, and customer support." },
+  { title: "Restaurant", icon: Utensils, desc: "Digital solutions for restaurant operations, online ordering, and customer loyalty.", href: "/industries/restaurant" },
+  { title: "Travel", icon: Globe, desc: "Booking platforms, travel management systems, and personalized travel experiences.", href: "/industries/travel" },
+  { title: "Real Estate", icon: Home, desc: "Property management software, virtual tours, and real estate marketplaces.", href: "/industries/real-estate" },
+  { title: "Magazine & Newspaper", icon: Newspaper, desc: "Digital publishing platforms and content management systems.", href: "/industries/magazine-newspaper" },
+  { title: "Social Media", icon: Users, desc: "Building and enhancing social networking platforms and community tools.", href: "/industries/social-media" },
+  { title: "Marketing", icon: Megaphone, desc: "Marketing automation, CRM, and analytics tools for effective campaigns.", href: "/industries/marketing", grad: "from-rose-400 to-pink-600", shadow: "hover:shadow-rose-200/60" },
+  { title: "Aviation", icon: Plane, desc: "Software for airline operations, fleet management, and passenger experience.", href: "/industries/aviation" },
+  { title: "CSR", icon: Gem, desc: "Corporate Social Responsibility platforms for impact tracking and reporting.", href: "/industries/csr" },
+  { title: "Retail", icon: ShoppingBag, desc: "Retail management systems, inventory tracking, and customer engagement.", href: "/industries/retail" },
+  { title: "Gaming", icon: Gamepad, desc: "Developing engaging games and gaming platforms for various devices.", href: "/industries/gaming", grad: "from-violet-500 to-purple-600", shadow: "hover:shadow-violet-200/60" },
+  { title: "Telecom", icon: Phone, desc: "Solutions for telecommunication services, network management, and customer support.", href: "/industries/telecom" },
 ];
 
 export default function IndustriesSection() {
@@ -82,11 +81,17 @@ export default function IndustriesSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {allIndustries.map((industry, i) => {
             const Icon = industry.icon;
-            const { grad, shadow } = getGradientStyle(i);
+            // Use the industry-specific gradient if it exists, otherwise cycle through the default styles
+            const style = industry.grad && industry.shadow
+              ? { grad: industry.grad, shadow: industry.shadow }
+              : getGradientStyle(i);
+            const { grad, shadow } = style;
+
             return (
-              <div
+              <Link
+                href={industry.href || "#"}
                 key={i}
-                className={`reveal tilt-card card-white group relative p-8 rounded-3xl transition-all duration-400 hover:shadow-2xl ${shadow} cursor-pointer overflow-hidden`}
+                className={`reveal tilt-card card-white group relative block p-8 rounded-3xl transition-all duration-400 hover:shadow-2xl ${shadow} overflow-hidden`}
                 style={{ transitionDelay: `${0.08 * i}s` }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${grad} opacity-0 group-hover:opacity-[0.06] transition-opacity duration-400 rounded-3xl`} />
@@ -95,8 +100,12 @@ export default function IndustriesSection() {
                 </div>
                 <h3 className="relative text-xl font-bold text-gray-900">{industry.title}</h3>
                 <p className="relative mt-2 text-sm text-slate-500 leading-relaxed">{industry.desc}</p>
+                <div className="relative mt-6 flex items-center gap-1 text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <span className={`bg-gradient-to-r ${grad} bg-clip-text text-transparent`}>Explore Solutions</span>
+                  <span className={`bg-gradient-to-r ${grad} bg-clip-text text-transparent group-hover:translate-x-1 transition-transform duration-300`}>→</span>
+                </div>
                 <div className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full bg-gradient-to-r ${grad} transition-all duration-500 rounded-b-3xl`} />
-              </div>
+              </Link>
             );
           })}
         </div>

@@ -1,23 +1,21 @@
-import Stats from "@/components/Stats";
+import AboutHero from "@/components/about/AboutHero";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import Stats from "@/components/Stats";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
-import AboutHero from "@/components/about/AboutHero";
-import TeamSection from "@/components/about/TeamSection";
-import MissionSection from "@/components/about/MissionSection";
+import AboutSection from "@/components/AboutSection"; // Reusing the existing AboutSection
 
 export const metadata = {
-  title: "About Us | Geesha Solutions",
-  description: "Learn about Geesha Solutions — our story, mission, values, and the team behind your digital transformation.",
+  title: "Who We Are | Geesha Solutions",
+  description: "Discover the story, vision, and values that define Geesha Solutions. Learn about our commitment to innovation and excellence.",
 };
 
-export default function AboutPage() {
+export default function WhoWeArePage() {
   return (
     <div>
       <AboutHero />
+      <AboutSection /> {/* This section is a good fit for "Who We Are" content */}
       <Stats />
-      <MissionSection />
-      <TeamSection />
       <WhyChooseUs />
       <TestimonialsSection />
       <CTASection />

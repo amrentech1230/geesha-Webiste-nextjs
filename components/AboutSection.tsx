@@ -23,6 +23,7 @@ export default function AboutSection() {
               alt="Geesha Solutions team"
               width={600} height={400}
               className="relative rounded-3xl object-cover w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500"
+              priority // Add priority if this image is above the fold
             />
           </div>
           {/* Floating badge */}

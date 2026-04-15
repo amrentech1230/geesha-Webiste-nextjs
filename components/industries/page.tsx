@@ -8,15 +8,15 @@ import { HeartPulse, Dumbbell, Watch } from "lucide-react";
 const categoryData = {
   title: "Health & Wellness",
   description: "Pioneering digital solutions in healthcare, fitness, and wearable technology to improve lives and streamline operations.",
-  icon: "❤️",
+  icon: "fa fa-heartbeat",
   industries: [
     {
       title: "Healthcare",
       description: "Innovative solutions for patient care, medical research, and health management.",
       icon: HeartPulse,
       href: "/industries/healthcare",
-      grad: "from-rose-400 to-pink-600",
-      shadow: "hover:shadow-rose-200/60",
+      grad: "from-red-500 to-rose-600",
+      shadow: "hover:shadow-red-200/60",
     },
     {
       title: "Fitness",

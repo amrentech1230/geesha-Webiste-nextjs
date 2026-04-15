@@ -18,7 +18,7 @@ const getGradientStyle = (index: number) => gradientStyles[index % gradientStyle
 
 const allIndustries = [
   // Column 1
-  { title: "Healthcare", icon: HeartPulse, desc: "Innovative solutions for patient care, medical research, and health management." }, // Ensure this is unique if Finance is also added
+  { title: "Healthcare", icon: HeartPulse, desc: "Innovative solutions for patient care, medical research, and health management.", href: "/industries/healthcare" },
   { title: "Wearables", icon: Watch, desc: "Developing smart wearable technology for fitness, health, and lifestyle." },
   { title: "Fitness", icon: Dumbbell, desc: "Building platforms and apps to enhance personal fitness and wellness journeys." },
   { title: "On-Demand", icon: Rocket, desc: "Creating seamless on-demand services for various consumer needs." },

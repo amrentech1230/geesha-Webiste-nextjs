@@ -1,71 +1,83 @@
 import ServiceHero from "@/components/services/ServiceHero";
 import ServiceFeatures from "@/components/services/ServiceFeatures";
 import ServiceProcess from "@/components/services/ServiceProcess";
-import CTASection from "@/components/CTASection";
+import ServiceCTA from "@/components/services/ServiceCTA";
 
-// --- HERO SECTION DATA ---
-const heroData = {
-  label: "Education Industry",
-  title: "Innovating Learning Experiences",
-  highlight: "for the Digital Age.",
-  desc: "Developing cutting-edge EdTech platforms, virtual classrooms, and educational management systems that empower students and educators.",
-  grad: "from-green-500 to-emerald-600",
-  gradFrom: "#22c55e", // green-500
-  gradTo: "#059669",   // emerald-600
-  emoji: "🎓",
-  badges: ["E-Learning Platforms", "Virtual Classrooms", "Student Management", "Interactive Content"],
-  stats: [
-    { value: "500K+", label: "Students Reached" },
-    { value: "100+", label: "Educational Institutions" },
-    { value: "95%", label: "User Engagement" },
-    { value: "Top Rated", label: "Learning Apps" },
-  ],
-};
-
-// --- FEATURES SECTION DATA ---
-const featuresData = {
-  serviceTitle: "Education",
-  serviceDesc: "We build comprehensive EdTech solutions that transform traditional learning into engaging digital experiences.",
-  features: [
-    { icon: "📚", title: "E-Learning Platforms", desc: "Customizable platforms for online courses, content delivery, and progress tracking." },
-    { icon: "🧑‍🏫", title: "Virtual Classrooms", desc: "Interactive live class solutions with whiteboards, chat, and breakout rooms." },
-    { icon: "📝", title: "Assessment & Grading", desc: "Automated tools for quizzes, assignments, and performance analytics." },
-    { icon: "🤝", title: "Student & Teacher Portals", desc: "Dedicated portals for seamless communication, resource sharing, and administrative tasks." },
-  ],
-  tools: ["Moodle", "Canvas", "Zoom API", "Firebase", "React", "Node.js"],
-};
-
-// --- PROCESS SECTION DATA ---
-const processData = {
-  steps: [
-    { num: "01", title: "Curriculum Analysis", desc: "Understanding educational goals and content structure to design effective learning paths.", icon: "📖" },
-    { num: "02", title: "Interactive UX/UI", desc: "Creating engaging and intuitive interfaces for students and educators of all ages.", icon: "✨" },
-    { num: "03", title: "Scalable Platform Development", desc: "Building robust and secure platforms capable of handling large user bases and rich media content.", icon: "🌐" },
-    { num: "04", title: "Deployment & Support", desc: "Launching the platform and providing continuous support and updates for optimal performance.", icon: "🚀" },
-  ],
-};
+const gradFrom = "#dc2626"; // red-600
+const gradTo = "#ef4444"; // red-500
+const grad = "from-red-600 to-red-500";
 
 export const metadata = {
-  title: "Education App Development | Geesha Solutions",
-  description: "Custom software solutions for the education industry, including e-learning platforms, virtual classrooms, and educational management systems.",
+  title: "Magazine & Newspaper Solutions | Geesha Solutions",
+  description: "Digital publishing platforms, content management systems (CMS), subscription models, and ad-tech integration for modern media outlets.",
 };
 
-export default function EducationIndustryPage() {
+export default function MagazineNewspaperIndustryPage() {
   return (
-    <main>
-      <ServiceHero {...heroData} />
+    <div>
+      <ServiceHero
+        label="Magazine & Newspaper"
+        title="Reimagining Publishing"
+        highlight="for the Digital Era."
+        desc="We build sophisticated digital publishing platforms, content management systems (CMS), and monetization strategies for magazines and newspapers, enabling them to thrive online."
+        grad={grad}
+        gradFrom={gradFrom}
+        gradTo={gradTo}
+        emoji="📰"
+        badges={["Digital Publishing", "Headless CMS", "Subscription Models", "Ad Tech", "Reader Analytics", "Content Monetization"]}
+        stats={[
+          { value: "50+", label: "Media Outlets Powered" },
+          { value: "10M+", label: "Monthly Active Readers" },
+          { value: "300%", label: "Subscription Growth" },
+          { value: "80%", label: "Faster Content Delivery" },
+        ]}
+      />
       <ServiceFeatures
-        {...featuresData}
-        grad={heroData.grad}
-        gradFrom={heroData.gradFrom}
-        gradTo={heroData.gradTo}
+        grad={grad}
+        gradFrom={gradFrom}
+        gradTo={gradTo}
+        serviceTitle="Comprehensive Digital Publishing Technology"
+        serviceDesc="From content creation to reader engagement, we provide the tools for modern media companies to succeed in a competitive digital landscape."
+        features={[
+          { icon: "📝", title: "Headless CMS Solutions", desc: "Flexible and scalable content management systems (e.g., Strapi, Sanity) for multi-platform content distribution." },
+          { icon: "💰", title: "Subscription & Paywall Integration", desc: "Robust systems for managing reader subscriptions, metered paywalls, and premium content access." },
+          { icon: "📈", title: "Advertising Technology (Ad-Tech)", desc: "Integration with ad servers and programmatic platforms to maximize revenue while maintaining user experience." },
+          { icon: "📊", title: "Reader Analytics & Engagement", desc: "Advanced analytics to understand reader behavior, personalize content, and increase engagement." },
+          { icon: "⚡", title: "Accelerated Mobile Pages (AMP)", desc: "Implementing AMP for lightning-fast article loading on mobile devices, improving SEO and user retention." },
+          { icon: "🔔", title: "Push Notification & Alerts", desc: "Systems for delivering breaking news alerts and personalized content recommendations to drive traffic." },
+          { icon: "🎙️", title: "Podcast & Video Platform Integration", desc: "Seamlessly integrate and manage multimedia content to create richer storytelling experiences." },
+          { icon: "🔒", title: "Digital Rights Management (DRM)", desc: "Protecting your valuable content from unauthorized distribution and piracy." },
+        ]}
+        tools={["Next.js", "Headless CMS", "Stripe", "Google Ad Manager", "GraphQL", "AMP", "Firebase", "Analytics Platforms"]}
       />
       <ServiceProcess
-        {...processData}
-        gradFrom={heroData.gradFrom}
-        gradTo={heroData.gradTo}
+        gradFrom={gradFrom}
+        gradTo={gradTo}
+        steps={[
+          { num: "01", icon: "🎯", title: "Audience & Content Strategy", desc: "We analyze your readership and content goals to design a platform that enhances engagement and monetization." },
+          { num: "02", icon: "🎨", title: "UX for Readability", desc: "Designing clean, fast, and intuitive interfaces that prioritize the reading experience across all devices." },
+          { num: "03", icon: "💻", title: "CMS & Platform Development", desc: "Building the core publishing platform with a powerful CMS, and integrating subscription and ad-tech systems." },
+          { num: "04", icon: "🚀", title: "Launch & Performance Tuning", desc: "Deploying the platform with a focus on speed, SEO, and scalability, while providing ongoing support." },
+        ]}
       />
-      <CTASection />
-    </main>
+      <ServiceCTA
+        gradFrom={gradFrom}
+        gradTo={gradTo}
+        benefits={[
+          { icon: "🌟", title: "Enhanced Reader Experience", desc: "Deliver a fast, clean, and engaging reading experience that keeps users coming back." },
+          { icon: "💰", title: "Diversified Revenue Streams", desc: "Implement effective subscription, advertising, and e-commerce models to boost revenue." },
+          { icon: "✏️", title: "Streamlined Editorial Workflows", desc: "Empower your content creators with a modern, efficient, and flexible publishing system." },
+          { icon: "📈", title: "Data-Informed Content Strategy", desc: "Leverage reader data to make smarter decisions about your content and editorial direction." },
+          { icon: "🌐", title: "Future-Ready Platform", desc: "Build on a scalable, modern architecture that can adapt to the future of digital media." },
+          { icon: "🤝", title: "Expert Publishing Partner", desc: "Collaborate with a team that understands the technological challenges of the media industry." },
+        ]}
+        otherServices={[
+          { label: "AI Solutions", href: "/services/ai-solutions", icon: "🤖", grad: "from-amber-400 to-orange-500" },
+          { label: "App Development", href: "/services/app-development", icon: "📱", grad: "from-violet-500 to-purple-600" },
+          { label: "Web Development", href: "/services/web-development", icon: "💻", grad: "from-blue-500 to-indigo-600" },
+          { label: "Digital Marketing", href: "/services/digital-marketing", icon: "📈", grad: "from-emerald-500 to-green-600" },
+        ]}
+      />
+    </div>
   );
 }

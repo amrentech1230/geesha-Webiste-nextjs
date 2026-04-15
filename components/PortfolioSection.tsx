@@ -21,8 +21,7 @@ export default function PortfolioSection() {
   const ref = useReveal();
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const transitionRef = useRef<ReturnType<typeof setTimeout>>();
-
+  const transitionRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => prev + 1);
   }, []);

@@ -62,7 +62,7 @@ export default function CSRIndustryPage() {
       />
       <ServiceCTA
         gradFrom={gradFrom}
-To={gradTo}
+        gradTo={gradTo}
         benefits={[
           { icon: "🌟", title: "Improved Brand Reputation", desc: "Showcase your commitment to social and environmental responsibility, enhancing public perception and trust." },
           { icon: "✅", title: "Measurable Social Impact", desc: "Quantify and report on your CSR initiatives, demonstrating tangible positive change." },
