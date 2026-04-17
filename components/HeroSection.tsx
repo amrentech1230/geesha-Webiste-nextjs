@@ -64,13 +64,12 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col justify-center h-full max-w-7xl mx-auto px-6">
 
         <span className="animate-slide-up section-label label-blue mb-6 inline-flex w-fit">
-          ✦ Welcome to Geesha Solutions
+          ✦ Welcome to Geesha Solutions Pvt Ltd. ✦
         </span>
 
         <h1 className="animate-slide-up text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05] text-white delay-100">
-          Engineering<br />
-          <span className="gradient-text-light">Vision.</span>{" "}
-          <span className="text-white/25">Driving</span><br />
+          Engineering <span className="gradient-text-light">Vision.</span><br />
+          <span className="text-white/25">Driving</span>{" "}
           <span className="gradient-text-vivid">{displayed}</span>
           <span className="cursor-blink text-sky-400 ml-1">|</span>
         </h1>

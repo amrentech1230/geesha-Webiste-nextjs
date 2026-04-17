@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react"; // Import X icon for close button
@@ -331,6 +332,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false); // New state for contact form modal
+  const [showTopProgressBar, setShowTopProgressBar] = useState(false); // New state for the top progress bar loader
+  const [loading, setLoading] = useState(false); // State for page loader
   // States to manage which main category is currently active/hovered in the dropdowns
   const [openMobileMenu, setOpenMobileMenu] = useState<string | null>(null);
   const [activeIndustryCategory, setActiveIndustryCategory] = useState(categorizedIndustries[0].category);
@@ -340,6 +343,22 @@ export default function Header() {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Page Loader Logic
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    // Show loader immediately on route change start
+    setLoading(true);
+
+    // Hide loader after a short delay to ensure content is ready
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 300); // Adjust delay as needed
+
+    return () => clearTimeout(timer);
   }, []);
   const handleMobileMenuToggle = (menu: string) => {
     setOpenMobileMenu(openMobileMenu === menu ? null : menu);
@@ -374,8 +393,46 @@ export default function Header() {
           background: linear-gradient(90deg, #103c61, #0ea5e9);
           transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
         }
+        @keyframes fill-progress {
+          from { width: 0%; }
+          to { width: 100%; }
+        }
         .nav-link-hover:hover::after { width: 100%; }
       `}</style>
+
+      {/* Sticky "Get in Touch" button on the left side */}
+      <Link href="/contact">
+        <button
+          className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gradient-to-r from-brand to-sky-500 text-white font-bold py-3 px-5 rounded-l-lg shadow-lg hover:from-brand-light hover:to-sky-400 transition-all duration-300 transform hover:-translate-y-1/2 hover:scale-105"
+          style={{
+            writingMode: 'vertical-rl',
+            textOrientation: 'mixed',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          Get in Touch
+        </button>
+      </Link>
+
+      {/* Top Progress Bar Loader */}
+      {showTopProgressBar && (
+        <div className="fixed top-0 left-0 w-full h-1 z-[9998] bg-gradient-to-r from-brand to-sky-500">
+          <div className="h-full bg-white/50" style={{ animation: 'fill-progress 0.5s ease-out forwards' }} />
+        </div>
+      )}
+
+      {/* Page Loader */}
+      {loading && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/80 backdrop-blur-sm transition-opacity duration-300">
+          <div className="relative flex h-20 w-20">
+            {/* Outer ring */}
+            <div className="absolute inset-0 animate-spin rounded-full border-4 border-solid border-brand border-t-transparent" />
+            {/* Inner dot */}
+            <div className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-sky-500" />
+          </div>
+        </div>
+      )}
+
 
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
@@ -390,7 +447,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <Image
-              src="/geesha_logo.png"
+              src={active ? "/geesha_logo_dark.png" : "/geesha_logo.webp"}
               alt="Geesha Solutions"
               width={active ? 88 : 100}
               height={36}
@@ -576,12 +633,12 @@ export default function Header() {
 
           {/* Right side: phone + CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <a
+            {/* <a
               href="tel:+94770000000"
               className={`text-[12px] font-semibold transition-colors duration-300 ${active ? "text-gray-500 hover:text-brand" : "text-white/60 hover:text-white"}`}
             >
               📞 +91 9780804666
-            </a>
+            </a> */}
             <button
               className={`shine-btn text-[13px] font-bold px-5 py-2 rounded-full transition-all duration-300 ${
                 active
