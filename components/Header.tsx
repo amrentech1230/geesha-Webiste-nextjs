@@ -235,6 +235,19 @@ const rawCategorizedIndustries = [
       }
     ]
   },
+    {
+    category: "Food",
+    icon: "🚀",
+    subCategories: [
+      {
+        name: "Food",
+        items: [ // Changed icon from 🚀 to 🍔
+          createBaseIndustryItem("Food", "🍔"),
+        ]
+      },
+
+    ]
+  },
 ];
 
 // Assign colors to all industry items in a deterministic way
@@ -346,9 +359,6 @@ export default function Header() {
   }, []);
 
   // Page Loader Logic
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   useEffect(() => {
     // Show loader immediately on route change start
     setLoading(true);

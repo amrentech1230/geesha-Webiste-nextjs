@@ -2,7 +2,6 @@ import ServiceHero from "@/components/services/ServiceHero";
 import ServiceFeatures from "@/components/services/ServiceFeatures";
 import ServiceProcess from "@/components/services/ServiceProcess";
 import CTASection from "@/components/CTASection";
-
 // --- HERO SECTION DATA ---
 const heroData = {
   label: "Banking Industry",

@@ -28,7 +28,9 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <BlogGrid />
+      <div className="bg-slate-50">
+        <BlogGrid />
+      </div>
       <CTASection />
     </div>
   );

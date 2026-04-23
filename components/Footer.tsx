@@ -26,7 +26,7 @@ const companyLinks = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Industries", href: "/industries" },
   { label: "Blogs", href: "/blogs" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Footer() {
@@ -39,12 +39,13 @@ export default function Footer() {
         <div className="reveal" style={{ transitionDelay: "0s" }}>
           <Link href="/" className="shrink-0">
             <Image
-              src="/geesha_logo.png"
+              src="/geesha_logo.webp"
               alt="Geesha Solutions"
-              width={active ? 88 : 100}
+              width={active ? 100 : 100}
               height={36}
               className="object-contain transition-all duration-500"
               style={{ height: "auto" }}
+              priority // Add priority for LCP image
             />
           </Link>
           <p className="mt-4 text-white/35 text-sm leading-relaxed">
